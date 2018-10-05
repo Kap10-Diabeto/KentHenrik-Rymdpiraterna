@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Kent_Henrik_Rymdpiraterna
 {
 	class SNEL
-	{
+	{ 
 		Texture2D ZNEL;
 		Texture2D BULLETtex;
 		Vector2 ZNELPos;
@@ -18,12 +18,13 @@ namespace Kent_Henrik_Rymdpiraterna
 		float fireRate = 0.1f;
 		float reloading = 0;
 		List<Bullet> BULLETS = new List<Bullet>();
-		int HP = 3;
-
+	
+        
 		public int Health
 		{
 			get { return HP; }
 		}
+        
 
 		public List<Bullet> Bullets
 		{
@@ -37,6 +38,7 @@ namespace Kent_Henrik_Rymdpiraterna
 			ZNELPos = new Vector2(265,900);
 			hitBox = new Rectangle((int)ZNELPos.X, (int)ZNELPos.Y, 60, 60);
 		}
+
 		public void Update(GameTime gameTime,GameWindow window)
 		{
 			KeyboardState state = Keyboard.GetState();

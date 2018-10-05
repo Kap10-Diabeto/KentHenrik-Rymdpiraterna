@@ -8,20 +8,10 @@ using System.Threading.Tasks;
 
 namespace Kent_Henrik_Rymdpiraterna
 {
-	class ELAK
-	{
-		Texture2D ELAK1;
-		Vector2 ELAKpos;
-		Rectangle hitBox;
+	class ELAK:Basklass
+	{ 
 		Random ran = new Random();
-		float speed = 10;
-		bool isDead = false;
-
-		public Rectangle HitBox
-		{
-			get { return hitBox; }
-		}
-
+		
 		public bool IsDead
 		{
 			get { return isDead; }
@@ -30,20 +20,20 @@ namespace Kent_Henrik_Rymdpiraterna
 
 		public ELAK(Texture2D tex)
 		{
-			ELAK1 = tex;
-			ELAKpos = new Vector2(ran.Next(0, 546),-50);
-			hitBox = new Rectangle((int)ELAKpos.X, (int)ELAKpos.Y, 50, 50);
+			texture = tex;
+			position = new Vector2(ran.Next(0, 546),-50);
+			hitBox = new Rectangle((int)position.X, (int)position.Y, 50, 50);
 		}
 
-		public void update()
+		public override void Update()
 		{
-			ELAKpos.Y += speed;
-			hitBox.Y = (int)ELAKpos.Y;
+			position.Y += speed;
+			hitBox.Y = (int)position.Y;
 		}
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			spriteBatch.Draw(ELAK1, hitBox, Color.White);
+			spriteBatch.Draw(texture, hitBox, Color.White);
 		}
 	}
 }

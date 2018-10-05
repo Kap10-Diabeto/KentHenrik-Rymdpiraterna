@@ -16,7 +16,7 @@ namespace Kent_Henrik_Rymdpiraterna
         Texture2D SE;
         Texture2D Xion;
         List<Xion> XionList = new List<Xion>();
-        List<ELAK> ELAKLista = new List<ELAK>();
+        List<Basklass> ELAKLista = new List<Basklass>();
         List<SUPERELAK> SuperELAKLista = new List<SUPERELAK>();
         Texture2D SPACE;
         Texture2D E;
@@ -102,7 +102,7 @@ namespace Kent_Henrik_Rymdpiraterna
 
                 foreach (var item in ELAKLista)
                 {
-                    item.update();
+                    item.Update();
                 }
                 int slump = rand.Next(0, 230);
                 if (slump < 6)

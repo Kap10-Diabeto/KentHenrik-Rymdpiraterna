@@ -5,9 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Kent_Henrik_Rymdpiraterna
 {
-	class Bullet
+	class Bullet:Basklass
 	{
-		Texture2D BULLET;
+	    Texture2D BULLET;
 		Vector2 BULLETPos;
 		Rectangle hitBox;
 		float speed = 20;

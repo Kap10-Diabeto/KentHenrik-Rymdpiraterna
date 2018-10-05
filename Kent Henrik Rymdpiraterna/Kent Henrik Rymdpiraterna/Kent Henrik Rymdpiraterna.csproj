@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Basklass.cs" />
     <Compile Include="Bullet.cs" />
     <Compile Include="ELAK.cs" />
     <Compile Include="Explosion2.cs" />
