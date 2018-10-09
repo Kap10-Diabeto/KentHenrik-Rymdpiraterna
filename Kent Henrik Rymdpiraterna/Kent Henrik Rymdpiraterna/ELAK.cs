@@ -11,12 +11,6 @@ namespace Kent_Henrik_Rymdpiraterna
 	class ELAK:Basklass
 	{ 
 		Random ran = new Random();
-		
-		public bool IsDead
-		{
-			get { return isDead; }
-			set { isDead = value; }
-		}
 
 		public ELAK(Texture2D tex)
 		{
@@ -31,9 +25,6 @@ namespace Kent_Henrik_Rymdpiraterna
 			hitBox.Y = (int)position.Y;
 		}
 
-		public void Draw(SpriteBatch spriteBatch)
-		{
-			spriteBatch.Draw(texture, hitBox, Color.White);
-		}
+
 	}
 }

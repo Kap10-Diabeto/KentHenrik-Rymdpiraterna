@@ -7,39 +7,17 @@ namespace Kent_Henrik_Rymdpiraterna
 {
 	class Bullet:Basklass
 	{
-	    Texture2D BULLET;
-		Vector2 BULLETPos;
-		Rectangle hitBox;
-		float speed = 20;
-		bool isDead;
-
-		public Rectangle HitBox
-		{
-			get { return hitBox; }
-		}
-
-		public bool IsDead
-		{
-			get { return isDead; } 
-			set { isDead = value; }
-		}
 	public Bullet(Texture2D tex ,Vector2 pos)
 		{
-			BULLET = tex;
-			BULLETPos = pos;
-			hitBox = new Rectangle((int)BULLETPos.X, (int)BULLETPos.Y, 20,20);
+			texture = tex;
+			position = pos;
+			hitBox = new Rectangle((int)position.X, (int)position.Y, 20,20);
 		}
 
-		public void update()
+		public override void Update()
 		{
-			BULLETPos.Y -= speed;
-			hitBox.Y = (int)BULLETPos.Y;
-		}
-
-
-		public void draw(SpriteBatch spriteBatch)
-		{
-			spriteBatch.Draw(BULLET, hitBox, Color.White);
+            position.Y -= speed;
+			hitBox.Y = (int)position.Y;
 		}
 
 	}

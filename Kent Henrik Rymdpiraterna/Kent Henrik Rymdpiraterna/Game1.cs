@@ -15,9 +15,7 @@ namespace Kent_Henrik_Rymdpiraterna
         SNEL ZNEL;
         Texture2D SE;
         Texture2D Xion;
-        List<Xion> XionList = new List<Xion>();
-        List<Basklass> ELAKLista = new List<Basklass>();
-        List<SUPERELAK> SuperELAKLista = new List<SUPERELAK>();
+        public static List<Basklass> ELAKLista = new List<Basklass>();
         Texture2D SPACE;
         Texture2D E;
         Texture2D Pets;
@@ -62,11 +60,11 @@ namespace Kent_Henrik_Rymdpiraterna
             HPH = Content.Load<Texture2D>("HPH");
             ZNEL = new SNEL(x, b);
             Xion = Content.Load<Texture2D>("Xion");
-            XionList.Add(new Xion(Xion));
+            ELAKLista.Add(new Xion(Xion));
             E = Content.Load<Texture2D>("ELAK");
             SE = Content.Load<Texture2D>("SuperELAK");
             ELAKLista.Add(new ELAK(E));
-            SuperELAKLista.Add(new SUPERELAK(SE));
+            ELAKLista.Add(new SUPERELAK(SE));
             SPACE = Content.Load<Texture2D>("Space3");
             Pets = Content.Load<Texture2D>("Pets");
             pointsfont = Content.Load<SpriteFont>("Pointsfont");
@@ -109,33 +107,15 @@ namespace Kent_Henrik_Rymdpiraterna
                 {
                     ELAKLista.Add(new ELAK(E));
                 }
-
-                foreach (var item in SuperELAKLista)
-                {
-                    item.update();
-                }
                 slump = rand.Next(0, 1000);
-                if (slump == 1)
-                {
-                    SuperELAKLista.Add(new SUPERELAK(SE));
-                }
-
-                foreach (var item in XionList)
-                {
-                    item.update();
-                }
                 slump = rand.Next(0, 3000);
                 if (slump == 2)
                 {
                     ELAKLista.Add(new ELAK(E));
                 }
 
-                Trollabortxion();
                 ELAKbulletkrock();
                 Trollabortelak();
-                SuperELAKbulletkrock();
-                Trollabortsuperelak();
-                XionBulletkrock();
 
                 foreach (Explosion item in explosions)
                 {
@@ -182,16 +162,6 @@ namespace Kent_Henrik_Rymdpiraterna
                     ELAK.Draw(spriteBatch);
                 }
 
-                foreach (var SuperELAK in SuperELAKLista)
-                {
-                    SuperELAK.Draw(spriteBatch);
-                }
-
-                foreach (var Xion in XionList)
-                {
-                    Xion.Draw(spriteBatch);
-                }
-
                 for (int i = 1; i <= ZNEL.Health; i++)
                 {
                     spriteBatch.Draw(HPH, new Rectangle(30 * i, 30, 30, 30), Color.White);
@@ -222,7 +192,15 @@ namespace Kent_Henrik_Rymdpiraterna
                 item.Draw(spriteBatch);
             }
 
+            Bullet b;
+            foreach (var item in ELAKLista)
+            {
+                if(item is Bullet)
+                {
+                    b = item as Bullet;
 
+                }
+            }
         }
 
         void ELAKbulletkrock()
@@ -243,54 +221,12 @@ namespace Kent_Henrik_Rymdpiraterna
 
                 }
             }
-
-
         }
-        void SuperELAKbulletkrock()
-        {
-            List<Bullet> BULLET = ZNEL.Bullets;
-            for (int i = 0; i < BULLET.Count; i++)
-            {
-                for (int j = 0; j < SuperELAKLista.Count; j++)
-                {
-                    if (BULLET[i].HitBox.Intersects(SuperELAKLista[j].HitBox))
-                    {
-                        BULLET[i].IsDead = true;
-                        SuperELAKLista[j].TaSkada();
-                        points = points + 1;
-
-                    }
-                }
-
-            }
-
-        }
-
-        void XionBulletkrock()
-        {
-            List<Bullet> BULLET = ZNEL.Bullets;
-            for (int i = 0; i < BULLET.Count; i++)
-            {
-                for (int x = 0; x < XionList.Count; x++)
-                {
-                    if (BULLET[i].HitBox.Intersects(XionList[x].HitBox))
-                    {
-                        BULLET[i].IsDead = true;
-                        XionList[x].TaSkada();
-                        points = points + 1;
-
-                    }
-                }
-
-            }
-
-        }
-
 
 
         void Trollabortelak()
         {
-            List<ELAK> temp = new List<ELAK>();
+            List<Basklass> temp = new List<Basklass>();
             for (int j = 0; j < ELAKLista.Count; j++)
             {
                 if (!ELAKLista[j].IsDead)
@@ -299,34 +235,6 @@ namespace Kent_Henrik_Rymdpiraterna
             ELAKLista = temp;
 
         }
-
-        void Trollabortsuperelak()
-        {
-            List<SUPERELAK> temp = new List<SUPERELAK>();
-            for (int j = 0; j < SuperELAKLista.Count; j++)
-            {
-                if (!SuperELAKLista[j].IsDead)
-                    temp.Add(SuperELAKLista[j]);
-                else
-                    explosions2.Add(new Explosion2(explosion2, 9, 9, new Vector2(SuperELAKLista[j].HitBox.X, SuperELAKLista[j].HitBox.Y)));
-            }
-            SuperELAKLista = temp;
-
-        }
-
-        void Trollabortxion()
-        {
-            List<Xion> temp = new List<Xion>();
-            for (int x = 0; x < XionList.Count; x++)
-            {
-                if (!XionList[x].IsDead)
-                    temp.Add(XionList[x]);
-                else
-                    explosions2.Add(new Explosion2(explosion2, 9, 9, new Vector2(XionList[x].HitBox.X, XionList[x].HitBox.Y)));
-            }
-            XionList = temp;
-        }
-
 
         void EnemyHitMotherShip()
         {
