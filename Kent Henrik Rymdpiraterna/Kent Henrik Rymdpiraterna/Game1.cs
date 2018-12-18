@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace Kent_Henrik_Rymdpiraterna
@@ -205,12 +206,12 @@ namespace Kent_Henrik_Rymdpiraterna
 
         void ELAKbulletkrock()
         {
-            List<Bullet> BULLET = ZNEL.Bullets;
+            List<Basklass> BULLET = ELAKLista.Where(x => x is Bullet).ToList();
             for (int i = 0; i < BULLET.Count; i++)
             {
                 for (int j = 0; j < ELAKLista.Count; j++)
                 {
-                    if (BULLET[i].HitBox.Intersects(ELAKLista[j].HitBox))
+                    if (BULLET[i].HitBox.Intersects(ELAKLista[j].HitBox) && !BULLET[i].Equals(ELAKLista[j]))
                     {
                         BULLET[i].IsDead = true;
                         ELAKLista[j].IsDead = true;
