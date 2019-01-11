@@ -28,6 +28,7 @@ namespace Kent_Henrik_Rymdpiraterna
 			BULLETtex = bulletTex;
 			position = new Vector2(265,900);
 			hitBox = new Rectangle((int)position.X, (int)position.Y, 60, 60);
+            HP = 3;
 		}
 
 		public void Update(GameTime gameTime,GameWindow window)

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO; 
 
 
 namespace Kent_Henrik_Rymdpiraterna
@@ -44,6 +45,22 @@ namespace Kent_Henrik_Rymdpiraterna
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 596;
             graphics.PreferredBackBufferHeight = 972;
+
+            if (File.Exists("score.txt")){
+                StreamReader sr = new StreamReader("score.txt");
+                sr.readline(points);
+                sr.Close();
+            }
+
+            else{
+            File.Create("score.txt");
+            StreamWriter sw = new StreamWriter("score.txt");
+            sw.WriteLine("0");
+            sw.Close();
+            }
+
+
+            
         }
 
 
@@ -199,7 +216,6 @@ namespace Kent_Henrik_Rymdpiraterna
                 if(item is Bullet)
                 {
                     b = item as Bullet;
-
                 }
             }
         }
@@ -247,7 +263,11 @@ namespace Kent_Henrik_Rymdpiraterna
                     ELAKLista[i].IsDead = true;
                     ZNEL.LHP();
                     if (ZNEL.Health == 0)
+                    {
+                        SteamReader sr = new StreamReader("Score.txt");
+                        string file = sr.ReadToEnd();
                         Exit();
+                    }
                 }
 
             }
