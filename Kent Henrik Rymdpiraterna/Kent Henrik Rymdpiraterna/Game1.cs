@@ -22,6 +22,7 @@ namespace Kent_Henrik_Rymdpiraterna
         Texture2D E;
         Texture2D Pets;
         int points = 0;
+        int highscore;
         SpriteFont pointsfont;
         //private Explosion explosion;
         List<Explosion> explosions = new List<Explosion>();
@@ -46,9 +47,11 @@ namespace Kent_Henrik_Rymdpiraterna
             graphics.PreferredBackBufferWidth = 596;
             graphics.PreferredBackBufferHeight = 972;
 
-            if (File.Exists("score.txt")){
+            if (File.Exists("score.txt")) {
                 StreamReader sr = new StreamReader("score.txt");
-                sr.readline(points);
+                points = int.Parse(sr.ReadLine());
+                !int.TryParse(Console.ReadLine(), out highscore))
+                Console.WriteLine(points);
                 sr.Close();
             }
 
@@ -56,6 +59,7 @@ namespace Kent_Henrik_Rymdpiraterna
             File.Create("score.txt");
             StreamWriter sw = new StreamWriter("score.txt");
             sw.WriteLine("0");
+                highscore = 0;
             sw.Close();
             }
 
