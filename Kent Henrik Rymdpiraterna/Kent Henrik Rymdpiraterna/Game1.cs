@@ -49,9 +49,7 @@ namespace Kent_Henrik_Rymdpiraterna
 
             if (File.Exists("score.txt")) {
                 StreamReader sr = new StreamReader("score.txt");
-                points = int.Parse(sr.ReadLine());
-                !int.TryParse(Console.ReadLine(), out highscore))
-                Console.WriteLine(points);
+                int.TryParse(sr.ReadLine(), out highscore);
                 sr.Close();
             }
 
@@ -59,12 +57,14 @@ namespace Kent_Henrik_Rymdpiraterna
             File.Create("score.txt");
             StreamWriter sw = new StreamWriter("score.txt");
             sw.WriteLine("0");
-                highscore = 0;
             sw.Close();
             }
 
+           
 
-            
+
+
+
         }
 
 
@@ -268,7 +268,7 @@ namespace Kent_Henrik_Rymdpiraterna
                     ZNEL.LHP();
                     if (ZNEL.Health == 0)
                     {
-                        SteamReader sr = new StreamReader("Score.txt");
+                        StreamReader sr = new StreamReader("Score.txt");
                         string file = sr.ReadToEnd();
                         Exit();
                     }
@@ -278,5 +278,13 @@ namespace Kent_Henrik_Rymdpiraterna
 
         }
 
+        
+        
+        /*
+        bool TryParse(string s, out int result)
+        {
+            if()
+        }
+        */
     }
 }
