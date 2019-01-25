@@ -33,6 +33,7 @@ namespace Kent_Henrik_Rymdpiraterna
         Texture2D startBG;
         Texture2D HPH;
         Random rand = new Random();
+        const string FILEPATH = @"C:\Users\Admin\source\repos\KentHenrik-Rymdpiraterna\Kent Henrik Rymdpiraterna\score.txt";
 
 
 
@@ -47,18 +48,19 @@ namespace Kent_Henrik_Rymdpiraterna
             graphics.PreferredBackBufferWidth = 596;
             graphics.PreferredBackBufferHeight = 972;
 
-            if (File.Exists("score.txt")) {
+            if (File.Exists(FILEPATH)) {
                 StreamReader sr = new StreamReader("score.txt");
                 int.TryParse(sr.ReadLine(), out highscore);
                 sr.Close();
             }
 
             else{
-            File.Create("score.txt");
-            StreamWriter sw = new StreamWriter("score.txt");
-            sw.WriteLine("0");
-            sw.Close();
-            }
+                File.Create(FILEPATH);
+                StreamWriter sw = new StreamWriter("score.txt");
+                highscore = 0;
+                sw.WriteLine("0");
+                sw.Close();
+            } 
 
            
 
@@ -268,8 +270,17 @@ namespace Kent_Henrik_Rymdpiraterna
                     ZNEL.LHP();
                     if (ZNEL.Health == 0)
                     {
-                        StreamReader sr = new StreamReader("Score.txt");
-                        string file = sr.ReadToEnd();
+                        /*StreamReader sr = new StreamReader("Score.txt");
+                        string file = sr.ReadToEnd();*/
+                        if( points > highscore)
+                        {
+                            StreamWriter sw = new StreamWriter(FILEPATH);
+                            sw.Write(points);
+                            highscore = points;
+                            sw.Close(); 
+                        }
+                            
+                            
                         Exit();
                     }
                 }
