@@ -12,7 +12,7 @@ namespace Kent_Henrik_Rymdpiraterna
 	{
 		
 		Random ran = new Random();
-		int hp = 70;
+		int hp = 30;
 
 		public Xion(Texture2D tex)
 		{

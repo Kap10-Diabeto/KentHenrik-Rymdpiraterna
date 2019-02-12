@@ -44,6 +44,7 @@
     <Compile Include="Basklass.cs" />
     <Compile Include="Bullet.cs" />
     <Compile Include="ELAK.cs" />
+    <Compile Include="Elakklass.cs" />
     <Compile Include="Explosion2.cs" />
     <Compile Include="Exposion.cs" />
     <Compile Include="Game1.cs" />

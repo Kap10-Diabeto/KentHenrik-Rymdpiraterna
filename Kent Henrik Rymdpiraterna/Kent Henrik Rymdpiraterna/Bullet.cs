@@ -18,6 +18,10 @@ namespace Kent_Henrik_Rymdpiraterna
 		{
             position.Y -= speed;
 			hitBox.Y = (int)position.Y;
+            if(position.Y < -100)
+            {
+                isDead = true;
+            }
 		}
 
 	}

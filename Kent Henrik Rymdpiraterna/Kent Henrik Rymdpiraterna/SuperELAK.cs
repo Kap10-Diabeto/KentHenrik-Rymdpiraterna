@@ -14,7 +14,7 @@ namespace Kent_Henrik_Rymdpiraterna
 	{
 
 		Random ran = new Random();
-		int hp = 20;
+		int hp = 10;
 
 		public SUPERELAK(Texture2D tex)
 		{

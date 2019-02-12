@@ -32,9 +32,10 @@ namespace Kent_Henrik_Rymdpiraterna
         bool mainMenu = true;
         Texture2D startBG;
         Texture2D HPH;
+        bool pause = false;
         Random rand = new Random();
         const string FILEPATH = @"C:\Users\Admin\source\repos\KentHenrik-Rymdpiraterna\Kent Henrik Rymdpiraterna\score.txt";
-
+        KeyboardState oldState;
 
 
 
@@ -120,37 +121,45 @@ namespace Kent_Henrik_Rymdpiraterna
                 Exit();
             if (!mainMenu)
             {
-                ZNEL.Update(gameTime, Window);
+                KeyboardState kstate = Keyboard.GetState();
+                if (kstate.IsKeyDown(Keys.P) && oldState.IsKeyUp(Keys.P))
+                    pause = !pause;
 
-                foreach (var item in ELAKLista)
+                if (!pause)
                 {
-                    item.Update();
-                }
-                int slump = rand.Next(0, 230);
-                if (slump < 6)
-                {
-                    ELAKLista.Add(new ELAK(E));
-                }
-                slump = rand.Next(0, 1000);
-                slump = rand.Next(0, 3000);
-                if (slump == 2)
-                {
-                    ELAKLista.Add(new ELAK(E));
-                }
+                    ZNEL.Update(gameTime, Window);
 
-                ELAKbulletkrock();
-                Trollabortelak();
+                    foreach (var item in ELAKLista)
+                    {
+                        item.Update();
+                    }
+                    int slump = rand.Next(0, 230);
+                    if (slump < 6)
+                    {
+                        ELAKLista.Add(new ELAK(E));
+                    }
+                    slump = rand.Next(0, 1000);
 
-                foreach (Explosion item in explosions)
-                {
-                    item.Update();
-                }
-                foreach (Explosion2 item in explosions2)
-                {
-                    item.Update();
-                }
-                EnemyHitMotherShip();
+                    slump = rand.Next(0, 3000);
+                    if (slump == 2)
+                    {
+                        ELAKLista.Add(new SUPERELAK(SE));
+                    }
 
+                    ELAKbulletkrock();
+                    Trollabortelak();
+
+                    foreach (Explosion item in explosions)
+                    {
+                        item.Update();
+                    }
+                    foreach (Explosion2 item in explosions2)
+                    {
+                        item.Update();
+                    }
+                    EnemyHitMotherShip();
+                }
+                oldState = kstate;
             }
             else
             {
@@ -270,8 +279,6 @@ namespace Kent_Henrik_Rymdpiraterna
                     ZNEL.LHP();
                     if (ZNEL.Health == 0)
                     {
-                        /*StreamReader sr = new StreamReader("Score.txt");
-                        string file = sr.ReadToEnd();*/
                         if( points > highscore)
                         {
                             StreamWriter sw = new StreamWriter(FILEPATH);
