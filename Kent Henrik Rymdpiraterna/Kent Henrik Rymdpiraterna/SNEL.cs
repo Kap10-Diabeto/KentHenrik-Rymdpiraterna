@@ -12,7 +12,7 @@ namespace Kent_Henrik_Rymdpiraterna
 	class SNEL:Basklass
 	{ 
 		Texture2D BULLETtex;
-		float fireRate = 0.1f;
+		float fireRate = 0.00000000000001f;
 		float reloading = 0;
         int HP;
         

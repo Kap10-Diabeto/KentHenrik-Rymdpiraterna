@@ -10,33 +10,15 @@ using System.Threading.Tasks;
 namespace Kent_Henrik_Rymdpiraterna
 {
 	
-	class SUPERELAK:Basklass
+	class SUPERELAK:Elakklass
 	{
-
-		Random ran = new Random();
-		int hp = 10;
-
-		public SUPERELAK(Texture2D tex)
+		public SUPERELAK(Texture2D tex):base(8)
 		{
+            speed = 5;
 			texture = tex;
 			position = new Vector2(ran.Next(0, 596-200), -200);
 			hitBox = new Rectangle((int)position.X, (int)position.Y, 200, 200);
 		}
-		public override void Update()
-		{
-            position.Y += speed;
-			hitBox.Y = (int)position.Y;
-		}
-
-		public void TaSkada()
-		{
-			hp--;
-			if (hp <= 0)
-				isDead = true;
-		}
-
-
-
 	}
 }
 

@@ -134,14 +134,15 @@ namespace Kent_Henrik_Rymdpiraterna
                         item.Update();
                     }
                     int slump = rand.Next(0, 230);
-                    if (slump < 6)
+                    if (slump < 7)
                     {
                         ELAKLista.Add(new ELAK(E));
                     }
                     slump = rand.Next(0, 1000);
+                    if (slump < 2)
 
                     slump = rand.Next(0, 3000);
-                    if (slump == 2)
+                    if (slump < 4)
                     {
                         ELAKLista.Add(new SUPERELAK(SE));
                     }
@@ -242,13 +243,11 @@ namespace Kent_Henrik_Rymdpiraterna
             {
                 for (int j = 0; j < ELAKLista.Count; j++)
                 {
-                    if (BULLET[i].HitBox.Intersects(ELAKLista[j].HitBox) && !BULLET[i].Equals(ELAKLista[j]))
+                    if (BULLET[i].HitBox.Intersects(ELAKLista[j].HitBox) && !(ELAKLista[j] is Bullet))
                     {
                         BULLET[i].IsDead = true;
-                        ELAKLista[j].IsDead = true;
+                        (ELAKLista[j] as Elakklass).TaSkada();
                         points = points + 1;
-                        explosions.Add(new Explosion(explosion, 9, 9, new Vector2(ELAKLista[j].HitBox.X - 20, ELAKLista[j].HitBox.Y - 10)));
-
                     }
 
                 }
@@ -263,8 +262,12 @@ namespace Kent_Henrik_Rymdpiraterna
             {
                 if (!ELAKLista[j].IsDead)
                     temp.Add(ELAKLista[j]);
+                else if (ELAKLista[j] is Elakklass)
+
+                    explosions.Add(new Explosion(explosion, 9, 9, new Vector2(ELAKLista[j].HitBox.X - 20, ELAKLista[j].HitBox.Y - 10)));
+
             }
-            ELAKLista = temp;
+            ELAKLista = temp; 
 
         }
 
